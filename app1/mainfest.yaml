@@ -41,22 +41,21 @@ kind: Ingress
 metadata:
   name: app1
   annotations:
-  alb.ingress.kubernetes.io/scheme: internet-facing
-  alb.ingress.kubernetes.io/target-type: ip
-  alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
-  alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:631164543894:certificate/eaed1c1e-f8f8-4b3e-aeba-20faf3d84eb3
-  alb.ingress.kubernetes.io/group.name: rahul8096
-
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:315069654700:certificate/c565ac42-ac77-4cb4-beb5-8f915ffaa11a
+    alb.ingress.kubernetes.io/group.name: joindevops
 spec:
   ingressClassName: alb
   rules:
-    - host: "app1.practice25.online"
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: app1
-                port:
-                  number: 80
+  - host: "app1.daws82s.online"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: app1
+            port:
+              number: 80
