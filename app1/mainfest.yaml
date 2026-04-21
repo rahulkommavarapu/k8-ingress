@@ -41,11 +41,14 @@ kind: Ingress
 metadata:
   name: app1
   annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:631164543894:certificate/eaed1c1e-f8f8-4b3e-aeba-20faf3d84eb3 #Acm
-    alb.ingress.kubernetes.io/group.name: rahul8096
+  alb.ingress.kubernetes.io/scheme: internet-facing
+  alb.ingress.kubernetes.io/target-type: ip
+  alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
+  alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:631164543894:certificate/eaed1c1e-f8f8-4b3e-aeba-20faf3d84eb3
+  alb.ingress.kubernetes.io/group.name: rahul8096
+
+  # 🔥 ADD THIS LINE
+  alb.ingress.kubernetes.io/healthcheck-path: /
 spec:
   ingressClassName: alb
   rules:
