@@ -1,3 +1,4 @@
+# Deploy the Pod
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,6 +22,7 @@ spec:
           ports:
             - containerPort: 80
 ---
+# Service Load Balacer
 kind: Service
 apiVersion: v1
 metadata:
@@ -32,3 +34,28 @@ spec:
     - protocol: TCP
       port: 80 # service port
       targetPort: 80
+---
+# Ingress Load Balancer
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app1
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:631164543894:certificate/eaed1c1e-f8f8-4b3e-aeba-20faf3d84eb3 #Acm
+    alb.ingress.kubernetes.io/group.name: rahul8096
+spec:
+  ingressClassName: alb
+  rules:
+    - host: "app1.practice25.online"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: app1
+                port:
+                  number: 80
