@@ -51,7 +51,7 @@ spec:
   rules:
   - host: "app1.practice25.online"
     http:
-      paths:
+      paths: 
       - pathType: Prefix
         path: "/"
         backend:
